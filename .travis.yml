@@ -7,5 +7,10 @@ rust:
 sudo: required
 dist: trusty
 
-script:
-    - cargo build
+build:
+    script:
+        - cargo build
+
+test:
+    script:
+        - cargo test
