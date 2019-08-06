@@ -19,6 +19,10 @@ matrix:
             - rustup component add rustfmt
           script:
             - cargo fmt -- --check
+        - rust: stable
+          name: hello-world
+          script:
+            make
 
 script:
     - cargo build
