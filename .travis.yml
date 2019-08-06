@@ -8,9 +8,7 @@ sudo: required
 dist: trusty
 
 build:
-    script:
-        - cargo build
+    - cargo build
 
 test:
-    script:
-        - cargo test
+    - cargo test
