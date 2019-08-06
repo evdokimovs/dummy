@@ -5,7 +5,6 @@ matrix:
         - rust: stable
         - rust: beta
         - rust: nightly
-          name: "Rust: nightly"
 
         - rust: stable
           name: clippy
