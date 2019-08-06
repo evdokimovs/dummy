@@ -1,14 +1,26 @@
 language: rust
-rust:
-    - stable
-    - beta
-    - nightly
 
-sudo: required
-dist: trusty
+matrix:
+    include:
+        - rust: stable
+        - rust: beta
+        - rust: nightly
+          name: "Rust: nightly"
 
-build:
+        - rust: stable
+          name: clippy
+          before_script:
+            - rustup component add clippy
+          script:
+            - cargo clippy
+
+        - rust: nightly
+          name: rustfmt
+          before_script:
+            - rustup component add rustfmt
+          script:
+            - cargo fmt -- --check
+
+script:
     - cargo build
-
-test:
     - cargo test
