@@ -24,6 +24,12 @@ matrix:
           script:
             make
 
-script:
-    - cargo build
-    - cargo test
+jobs:
+    include:
+        - stage: build
+          name: "Build app"
+          script: cargo build
+
+        - stage: test
+          name: "Unit tests"
+          script: cargo test
