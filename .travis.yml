@@ -1,38 +1,37 @@
 language: rust
 
-matrix:
-    include:
-        - rust: stable
-        - rust: beta
-        - rust: nightly
-
-        - rust: stable
-          name: clippy
-          before_script:
-            - rustup component add clippy
-          script:
-            - cargo clippy
-
-        - rust: nightly
-          name: rustfmt
-          before_script:
-            - rustup component add rustfmt
-          script:
-            - cargo fmt -- --check
-        - rust: stable
-          name: hello-world
-          script:
-            make
-
 jobs:
     include:
+        - stage: lints
+          rust: nightly
+          name: "Clippy"
+          before_script: rustup component add clippy
+          script: cargo clippy
+
+        - stage: lints
+          rust: nightly
+          name: "Rustfmt"
+          before_script: rustup component add rustfmt
+          script: cargo fmt -- --check
+
+        - stage: build
+          rust: stable
+          name: "Build app on stable rust"
+          script: cargo build
+
         - stage: build
           rust: beta
-          rust: stable
+          name: "Build app on beta rust"
+          script: cargo build
+
+        - stage: build
           rust: nightly
-          name: "Build app"
+          name: "Build app on nightly rust"
           script: cargo build
 
         - stage: test
-          name: "Unit tests"
+          name: "Unit tests on stable"
           script: cargo test
+
+        - stage: test
+          name: "Unit tests on beta rust"
