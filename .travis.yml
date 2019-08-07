@@ -3,7 +3,7 @@ language: rust
 jobs:
     include:
         - stage: lints
-          rust: stable 
+          rust: nightly-2019-08-03
           name: "Clippy"
           before_script: rustup component add clippy
           script: cargo clippy
