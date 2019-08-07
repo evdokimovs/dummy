@@ -3,12 +3,10 @@ language: rust
 jobs:
     include:
         - stage: foo
-          name: "Testing npm"
-          language: node_js
-          node_js: "7"
+          rust: stable
           script:
-            - yarn -v
             - npm -v
+            - yarn -v
 
         - stage: lints
           rust: nightly-2019-08-03
