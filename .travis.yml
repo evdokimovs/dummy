@@ -2,6 +2,14 @@ language: rust
 
 jobs:
     include:
+        - stage: foo
+          name: "Testing npm"
+          language: node_js
+          node_js: "7"
+          script:
+            - yarn -v
+            - npm -v
+
         - stage: lints
           rust: nightly-2019-08-03
           name: "Clippy"
