@@ -27,6 +27,9 @@ matrix:
 jobs:
     include:
         - stage: build
+          rust: beta
+          rust: stable
+          rust: nightly
           name: "Build app"
           script: cargo build
 
