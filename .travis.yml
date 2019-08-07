@@ -35,3 +35,7 @@ jobs:
 
         - stage: test
           name: "Unit tests on beta rust"
+
+install:
+    - rustc -vV
+    - cargo -vV
