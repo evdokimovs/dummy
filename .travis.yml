@@ -1,0 +1,47 @@
+language: rust
+
+jobs:
+    include:
+        - stage: foo
+          rust: stable
+          script:
+            - npm -v
+            - yarn -v
+
+        - stage: lints
+          rust: nightly-2019-08-03
+          name: "Clippy"
+          before_script: rustup component add clippy
+          script: cargo clippy
+
+        - stage: lints
+          rust: nightly
+          name: "Rustfmt"
+          before_script: rustup component add rustfmt
+          script: cargo fmt -- --check
+
+        - stage: build
+          rust: stable
+          name: "Build app on stable rust"
+          script: cargo build
+
+        - stage: build
+          rust: beta
+          name: "Build app on beta rust"
+          script: cargo build
+
+        - stage: build
+          rust: nightly
+          name: "Build app on nightly rust"
+          script: cargo build
+
+        - stage: test
+          name: "Unit tests on stable"
+          script: cargo test
+
+        - stage: test
+          name: "Unit tests on beta rust"
+
+install:
+    - rustc -vV
+    - cargo -vV
