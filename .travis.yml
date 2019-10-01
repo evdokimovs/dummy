@@ -1,0 +1,8 @@
+language: rust
+
+jobs:
+        include:
+                - name: test
+                  addons:
+                          firefox: latest
+                script: echo "Hello world"
